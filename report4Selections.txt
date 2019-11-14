@@ -1,0 +1,3 @@
+List all bodies surrounding star x
+
+List all stars with magnitude x
