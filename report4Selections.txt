@@ -1,3 +1,9 @@
 List all bodies surrounding star x
 
 List all stars with magnitude x
+
+List all stars within an area (longitude, latitude)
+
+List all planets larger than Jupiter
+
+List all stars ordered by mass
