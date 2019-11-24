@@ -1,9 +1,39 @@
+5 transactions
+
 List all bodies surrounding star x
+
+SELECT BODY.name
+FROM BODY
+WHERE STAR.name='x';
+
 
 List all stars with magnitude x
 
-List all stars within an area (longitude, latitude)
+SELECT STAR.name
+FROM STAR
+WHERE Magnitude='x';
+
+
+List all stars within an area (longitude<x, latitude<y)
+
+SELECT STAR.name
+FROM STAR
+WHERE Longtitude<'x' AND Latitude<'y';
+
 
 List all planets larger than Jupiter
 
+SELECT BODY.name
+FROM PLANET
+WHERE radius > (SELECT radius
+                FROM PLANET
+                WHERE BODY.name='Jupiter');
+
+
 List all stars ordered by mass
+
+SELECT *
+FROM STAR
+ORDER BY Mass DESC;
+
+
