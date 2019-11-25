@@ -1,39 +1,104 @@
-5 transactions
-
+Query 1
+*******
+English:
 List all bodies surrounding star x
 
-SELECT BODY.name
+Shows the ability to associate bodies with stars, a basic feature of the project
+
+SQL:
+SELECT Name
 FROM BODY
-WHERE STAR.name='x';
+WHERE Star_Name = "47 UMa"
+LIMIT 5;
 
+Result:
+47 UMa b
+47 UMa c
+47 UMa d
 
-List all stars with magnitude x
+Query 2
+*******
+English:
+List all asteroids with a rotation period of at most x
 
-SELECT STAR.name
-FROM STAR
-WHERE Magnitude='x';
+Shows the ability to make comparisons within a table to only list entities with
+certain parameters
 
+SQL:
+SELECT Asteroid_Name, Rotation_Period
+FROM ASTEROID
+WHERE Rotation_Period < 1
+LIMIT 5;
 
+Result:
+Apollo, 0.002
+Bennu, 0.000073
+Castalia, 0.0005
+Geographos, 0.004
+Icarus, 0.001
+
+Query 3
+*******
+English:
 List all stars within an area (longitude<x, latitude<y)
 
-SELECT STAR.name
+Shows the ability to make complex comparisons between attributes, which is
+particularly helpful with related attributes
+
+SQL:
+SELECT Name, Position_Longitude, Position_Latitude
 FROM STAR
-WHERE Longtitude<'x' AND Latitude<'y';
+WHERE Position_Longitude BETWEEN 200 AND 250 AND
+      Position_Latitude BETWEEN 25 AND 50
+LIMIT 5;
 
+Result:
+BD+00 2449, 229.68, 28.43
+BD+00 2573, 237.51, 39.2
+BD+00 2615, 241.11, 42.07
+BD+00 2663, 246.42, 46.17
+BD+02 2112, 227.14, 28.65
 
+Query 4
+*******
+English:
 List all planets larger than Jupiter
 
-SELECT BODY.name
+Shows the ability to make attribute comparisons in relation to other entities,
+which is helpful for listing specified objects
+
+SQL:
+SELECT Planet_Name, Radius
 FROM PLANET
-WHERE radius > (SELECT radius
+WHERE Radius > (SELECT Radius
                 FROM PLANET
-                WHERE BODY.name='Jupiter');
+                WHERE Planet_Name="Jupiter")
+LIMIT 5;
 
+Result:
+2MASS J02192210-3925225 b, 1.440
+CoRoT-1 b, 1.490
+CoRoT-11 b, 1.430
+CoRoT-12 b, 1.440
+CoRoT-14 b, 1.090
 
-List all stars ordered by mass
+Query 5
+*******
+English:
+List all stars ordered by magnitude
 
-SELECT *
+Shows the ability to order entities by attributes, an extremely helpful ability
+when dealing with hundreds or thousands of entities.
+
+SQL:
+SELECT Name, Magnitude
 FROM STAR
-ORDER BY Mass DESC;
+ORDER BY Magnitude DESC
+LIMIT 5;
 
-
+Result:
+BD+70 90, 7.83
+BD-15 915, 7.71
+BD+22 1577, 7.68
+BD+28 2331, 7.62
+BD+40 2694, 7.4
